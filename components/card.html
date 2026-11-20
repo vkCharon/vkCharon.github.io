@@ -1,0 +1,15 @@
+{%- assign entry = include.entry -%}
+{%- assign category = entry.categories | first -%}
+<article class="card"{% if include.searchable %} data-entry data-category="{{ category | escape }}" data-tags="{{ entry.tags | jsonify | escape }}"{% endif %}>
+  <a href="{{ entry.url | relative_url }}" class="card-link">
+    {% if entry.cover %}
+      <img class="plate" width="640" height="360" loading="lazy" decoding="async" src="{{ entry.cover | relative_url }}" alt="{{ entry.cover_alt | default: '' | escape }}">
+    {% else %}
+      <span class="plate {% case category %}{% when '前端' %}disc{% when '出版' %}cross{% else %}square{% endcase %}" aria-hidden="true"><i></i><i></i></span>
+    {% endif %}
+    <span class="meta"><span class="tag">{{ category }}</span><time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: '%Y.%m.%d' }}</time></span>
+    <h3>{{ entry.title | escape }}</h3>
+  </a>
+  <p>{{ entry.description | escape }}</p>
+  <small class="data">{% include time.html doc=entry %}</small>
+</article>

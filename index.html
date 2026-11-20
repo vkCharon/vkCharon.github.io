@@ -1,0 +1,37 @@
+---
+title: 平面誌
+description: ChR 的個人刊物。從平面構成到前端實作，在這裡讀文章、看專案，也看見每次出版留下的選擇。
+---
+<section class="hero">
+  <div class="hero-copy">
+    <p class="kicker label"><span class="dot"></span> ChR / Field journal</p>
+    <h1>平面誌<span lang="en">Field Notes</span></h1>
+    <p class="intro">我是 ChR。在這裡拆解網頁的形狀、寫下前端實驗，記錄一份個人刊物如何成形。</p>
+    <a class="button primary" href="{{ '/posts/' | relative_url }}">閱讀文章</a>
+    <a class="quiet" href="{{ '/projects/' | relative_url }}">瀏覽專案</a>
+  </div>
+  <figure class="specimen" aria-label="構成習作：圓盤、方塊與勃艮第色斜面">
+    <div class="print" aria-hidden="true"><i class="orb"></i><i class="slab"></i><i class="block"></i></div>
+    <figcaption class="label"><span>圖版 001</span><span lang="en">Axial study / −12°</span></figcaption>
+  </figure>
+</section>
+{% assign featured = site.posts | where: 'featured', true %}
+{% if featured.size > 0 %}
+<section class="section" aria-labelledby="selected">
+  <div class="heading"><div><p class="label kicker">01 / Selection</p><h2 id="selected">編選文章</h2></div><a href="{{ '/posts/' | relative_url }}">文章索引</a></div>
+  <div class="grid">{% for post in featured limit:3 %}{% include card.html entry=post %}{% endfor %}</div>
+</section>
+{% endif %}
+<div class="lower">
+  <section class="section" aria-labelledby="latest">
+    <div class="heading"><div><p class="label kicker">02 / Dispatches</p><h2 id="latest">最新發表</h2></div></div>
+    <ol class="dispatch">{% for post in site.posts limit:5 %}<li><span class="data">EP.{{ post.serial }}</span><a href="{{ post.url | relative_url }}">{{ post.title }}</a><time class="data" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m.%d' }}</time></li>{% endfor %}</ol>
+  </section>
+  <section class="section" aria-labelledby="activity">
+    <div class="heading"><div><p class="label kicker">03 / Repository</p><h2 id="activity">GitHub 動態</h2></div></div>
+    <p class="data">最近建置 · {{ site.time | date: '%Y.%m.%d %H:%M UTC' }}</p>
+    {% if site.github.build_revision %}<p class="data">出版版本 · <a href="{{ site.repo_url }}/commit/{{ site.github.build_revision }}">{{ site.github.build_revision | slice: 0, 7 }}</a></p>{% endif %}
+    <p>這份刊物由版本庫直接出版。各次更新與檔案變動可在活動紀錄查閱。</p>
+    <a href="{{ site.repo_url }}/activity?ref=main">查看出版分支活動</a> · <a href="{{ site.profile_url }}">作者主頁</a>
+  </section>
+</div>

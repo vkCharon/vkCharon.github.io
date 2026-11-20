@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="icon" href="{{ '/assets/mark.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="alternate" href="{{ '/feed.xml' | absolute_url }}" type="application/rss+xml" title="{{ site.title }}">
+  <script>
+    try { if (localStorage.getItem('chr-theme') === 'light') document.documentElement.dataset.theme = 'light'; }
+    catch (error) { console.info('Theme storage unavailable:', error.name); }
+  </script>
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+  <script defer src="{{ '/assets/site.js' | relative_url }}"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <header class="mast wrap">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="ChR 平面誌首頁">ChR</a>
+    <span class="imprint label" lang="en">Independent<br>field journal</span>
+    <nav aria-label="主要導覽">
+      {% assign routes = '/posts/|/projects/|/about/' | split: '|' %}
+      {% assign labels = '文章|專案|關於' | split: '|' %}
+      {% for route in routes %}
+        <a href="{{ route | relative_url }}"{% if page.url == route %} aria-current="page"{% elsif page.url contains route %} aria-current="location"{% endif %}>{{ labels[forloop.index0] }}</a>
+      {% endfor %}
+      <button id="theme" type="button" aria-pressed="false" hidden>淺色模式</button>
+    </nav>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">{{ content }}</main>
+  <footer>
+    <div class="wrap foot">
+      <div><b class="brand">ChR</b><p>平面誌 <span class="label" lang="en">/ Field journal</span></p></div>
+      <nav aria-label="頁尾導覽">
+        <a href="{{ site.profile_url }}">GitHub</a>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS 訂閱</a>
+        <a href="{{ '/about/#contact' | relative_url }}">聯絡</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

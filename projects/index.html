@@ -1,0 +1,15 @@
+---
+title: 專案索引
+description: 平面誌的專案案例，從 Markdown 出版工具到不需後端的文章索引。
+---
+<div class="page-head"><p class="kicker label">Index 02 / Selected work</p><h1>專案索引</h1><p class="dek">把文章裡的想法放進可使用的介面。每個案例都附上實作與取捨。</p></div>
+{% assign cases = site.projects | sort: 'serial' %}
+{% for project in cases %}
+<article class="case-row">
+  <span class="case-num" aria-hidden="true">{{ project.serial }}</span>
+  <div><p class="label kicker">Case study / {{ project.serial }}</p><h2><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h2>
+    <p>{{ project.description }}</p><div class="tags">{% for tech in project.stack %}<span>{{ tech }}</span>{% endfor %}</div>
+  </div>
+  <a class="quiet" href="{{ project.repository_link }}" aria-label="{{ project.title }}的 GitHub 原始碼">GitHub</a>
+</article>
+{% endfor %}
