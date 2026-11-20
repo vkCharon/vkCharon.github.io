@@ -30,11 +30,28 @@ defaults:
   - scope: {path: "", type: projects}
     values:
       layout: article
-exclude:
-  - components
-  - scripts
-  - README.md
-  - Gemfile
-  - Gemfile.lock
-  - vendor
-  - "*.zip"
+# Publish named web entries only. Bracketed initials make these exact globs
+# rather than Jekyll 3's literal prefix matches (e.g. assets-private).
+# Underscore collections are read by Jekyll, not copied as public files.
+exclude: ["[!_]*"]
+include:
+  - "[d]efault.html"
+  - "[a]rticle.html"
+  - "[i]ndex.html"
+  - "[i]ndex.md"
+  - "[4]04.html"
+  - "[f]eed.xml"
+  - "[r]obots.txt"
+  - "[p]osts"
+  - "[p]rojects"
+  - "[a]bout"
+  - "[a]ssets"
+  - "[f]onts"
+  - "[s]ite.css"
+  - "[s]ite.js"
+  - "[m]ark.svg"
+  - "[s]ocial.png"
+  - "[p]lex-mono.woff2"
+  - "[u]nbounded.woff2"
+  - "[O]FL-plex-mono.txt"
+  - "[O]FL-unbounded.txt"

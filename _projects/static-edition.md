@@ -4,7 +4,7 @@ description: 從一份 README 到可訂閱的刊物，保留同一個 Pages 地�
 date: 2026-11-20
 serial: "01"
 stack: [Jekyll, Liquid, Markdown, GitHub Pages]
-repository_link: https://github.com/vkCharon/vkCharon.github.io/tree/journal/_layouts
+repository_link: https://github.com/vkCharon/vkCharon.github.io/tree/main/_layouts
 ---
 ## 問題
 

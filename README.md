@@ -4,7 +4,7 @@ A Traditional Chinese field journal at <https://vkcharon.github.io/>. Read the [
 
 ## Repository analysis
 
-The starting checkout contained only `README.md`. Pages was already enabled for `main` at `/` without a custom domain. No article database or article URLs needed migration. `main` received unrelated changes during implementation, so the clean `journal` branch is the site's source of truth. This preserves the public address without merging, overwriting, or publishing the later contents of `main`.
+The starting checkout contained only `README.md`. Pages was already enabled for `main` at `/` without a custom domain. No article database or article URLs needed migration. The `journal` branch contains a clean launch snapshot. `main` publishes the editable site and keeps unrelated repository files untouched. A Jekyll allowlist prevents those unrelated files from entering the published site.
 
 ## Recommended architecture
 
@@ -37,23 +37,23 @@ Gemfile, Gemfile.lock Local preview dependencies
 2. Render the shell, typography, two themes, geometric artwork and reading layout using site-specific CSS. Only public, newly implemented site assets belong in Git.
 3. Generate indexes and discovery metadata from articles and case studies. Article dates, labels and descriptions have a single source of truth.
 4. Enhance the static archive with URL-addressable search and filters. Check keyboard interactions, mobile reflow, restored filters, the no-JavaScript reading path, feeds and canonical links.
-5. Push to `journal`. Check the **Pages build and deployment** result before treating the work as published.
+5. Push site changes to `main`. Check the **Pages build and deployment** result before treating the work as published.
 
 ## Files created and modified
 
-The site source and local build files in the tree above are new. Also new: `.gitignore` and the two open-font licenses under `assets/fonts/`. `README.md` is the only pre-existing file that changed. `_site/` is generated, not committed. GitHub provides the Pages workflow; no custom `.github/workflows` file or deployment secret is required.
+The site source and local build files in the tree above are new. Also new: `.gitignore` and the two open-font licenses under `assets/fonts/`. This guide is `SITE.md` on `main` so deployment does not overwrite the existing README. `_site/` is generated, not committed. GitHub provides the Pages workflow; no custom `.github/workflows` file or deployment secret is required.
 
 ## Complete source code
 
 The individual files in this repository are the complete editable sources. To export them, including the binary font subsets and 1200×630 social image:
 
 ```sh
-git archive --format=zip --output=../chr-site-source.zip HEAD
+git archive --format=zip --output=../chr-site-source.zip origin/journal
 ```
 
 ## Deployment guide
 
-Use **Settings → Pages → Build and deployment → Deploy from a branch → `journal` / `(root)`**. Edit on `journal` (`git switch journal` after cloning). Every accepted push to this branch triggers the managed build. Check the `github-pages` deployment in Actions. Do not upload `_site/`, the local dependency directory or design reference archives. If moving to a project-site URL later, update `url` and `baseurl` in `_config.yml` first.
+Use **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)`**. Publish new Markdown articles on `main`. Every accepted push to this branch triggers the managed build. Check the `github-pages` deployment in Actions. Do not upload `_site/`, the local dependency directory or design reference archives. New static asset filenames must be allowed explicitly under `include` in `_config.yml`; post and project Markdown need no such changes. If moving to a project-site URL later, update `url` and `baseurl` first.
 
 **Local preview** (Ruby 3.3, Bundler, compiler for native gems):
 
@@ -65,7 +65,7 @@ python3 scripts/check.py
 bundle exec jekyll serve --host 127.0.0.1
 ```
 
-Open `http://127.0.0.1:4000/`. For a regression, revert the affected site change on `journal` and push the revert; do not rewrite history. Do not switch publication back to another branch without reviewing everything it would publish.
+Open `http://127.0.0.1:4000/`. For a regression, restore the affected site files from the last good edition and push the fix on `main`; retain the `_config.yml` publication allowlist so non-site files stay out of Pages. Do not rewrite history.
 
 ### Publish an article
 
