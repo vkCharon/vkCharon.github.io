@@ -1,0 +1,58 @@
+{
+  "manifestVersion": 3,
+  "name": "ChR_Design (Prototype)",
+  "namespace": "ChR",
+  "files": [
+    "blog.md",
+    "components/Button/README.md",
+    "components/LowerThird/README.md",
+    "components/PostCard/README.md",
+    "components/Tag/README.md",
+    "components/Thumbnail/README.md",
+    "components/bundle.css",
+    "components/bundle.js",
+    "components/index.d.ts",
+    "tokens.css",
+    "youtube.md"
+  ],
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18",
+      "global": "React"
+    },
+    {
+      "name": "react-dom",
+      "version": "18",
+      "global": "ReactDOM"
+    }
+  ],
+  "components": [
+    {
+      "name": "Button",
+      "group": "Actions",
+      "summary": "直角的動作按鈕：primary 是 persona 填色，hover 時向右推 3px 並拖出 echo 速度殘影；quiet（預設）是 line-strong 外框。"
+    },
+    {
+      "name": "Tag",
+      "group": "Labels",
+      "summary": "分類、系列、集數的小標籤：等寬字、拉丁字母全大寫，前面一個 6×6 實心方塊。"
+    },
+    {
+      "name": "PostCard",
+      "group": "Blog",
+      "summary": "部落格文章列表的卡片：16:9 圖版、分類與日期、標題、摘要。沒有封面圖時，圖版畫成至上主義構成。"
+    },
+    {
+      "name": "Thumbnail",
+      "group": "YouTube",
+      "summary": "YouTube 縮圖的構成模板：左側集數與標題，右側一塊沿 tilt-axis 傾斜的長平面、兩道殘影、一個方塊、一個圓盤。"
+    },
+    {
+      "name": "LowerThird",
+      "group": "YouTube",
+      "summary": "影片內的姓名條：左邊兩道殘影和一塊 persona 方塊，右邊 scrim 底板上放姓名與職稱。"
+    }
+  ],
+  "assetGroups": []
+}
