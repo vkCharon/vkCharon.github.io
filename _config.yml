@@ -1,0 +1,40 @@
+title: ChR 平面誌
+description: ChR 的個人刊物，記錄網頁構成、前端實作與出版中的小決定。
+url: https://vkcharon.github.io
+baseurl: ""
+lang: zh-Hant
+locale: zh_TW
+timezone: Etc/UTC
+author: ChR
+repository: vkCharon/vkCharon.github.io
+repo_url: https://github.com/vkCharon/vkCharon.github.io
+profile_url: https://github.com/vkCharon
+permalink: /posts/:slug/
+markdown: kramdown
+includes_dir: components
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+defaults:
+  - scope: {path: ""}
+    values:
+      layout: default
+      image: /assets/social.png
+  - scope: {path: "", type: posts}
+    values:
+      layout: article
+  - scope: {path: "", type: projects}
+    values:
+      layout: article
+exclude:
+  - components
+  - scripts
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - "*.zip"

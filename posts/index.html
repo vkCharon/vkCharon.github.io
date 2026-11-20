@@ -1,0 +1,17 @@
+---
+title: 文章索引
+description: 搜尋 ChR 的文章，依構成、前端、出版或標籤篩選閱讀。
+---
+<div class="page-head"><p class="kicker label">Index 01 / Writing</p><h1>文章索引</h1><p class="dek">從一個排版細節開始，讀到它背後的實作。</p></div>
+<section aria-label="瀏覽文章" class="archive section">
+  <h2 class="sr-only">全部文章</h2>
+  <form role="search" class="filters" hidden>
+    <label>搜尋文章<input type="search" name="q" placeholder="標題、摘要或標籤"></label>
+    <label>分類<select name="category"><option value="">全部分類</option>{% for pair in site.categories %}<option>{{ pair[0] | escape }}</option>{% endfor %}</select></label>
+    <label>標籤<select name="tag"><option value="">全部標籤</option>{% for pair in site.tags %}<option>{{ pair[0] | escape }}</option>{% endfor %}</select></label>
+    <button class="button secondary" type="reset">清除篩選</button>
+  </form>
+  <p id="count" class="data" role="status" aria-live="polite">共 {{ site.posts | size }} 篇文章</p>
+  <div class="grid">{% for post in site.posts %}{% include card.html entry=post searchable=true %}{% endfor %}</div>
+  <p id="empty" hidden>找不到符合的文章。請換個關鍵字，或清除篩選。</p>
+</section>

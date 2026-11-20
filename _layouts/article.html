@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article class="reader">
+  {% if page.collection == 'projects' %}
+    <a class="back" href="{{ '/projects/' | relative_url }}">回到專案索引</a>
+    <p class="kicker label">Case study / {{ page.serial }}</p>
+  {% else %}
+    <a class="back" href="{{ '/posts/' | relative_url }}">回到文章索引</a>
+    <p class="kicker label">{{ page.categories | first }} / EP.{{ page.serial }}</p>
+  {% endif %}
+  <h1>{{ page.title | escape }}</h1>
+  <p class="dek">{{ page.description | escape }}</p>
+  <p class="meta">ChR · <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time> · {% include time.html doc=page %}</p>
+  {% if page.tags %}
+    <div class="tags">{% for tag in page.tags %}<a href="{{ '/posts/' | relative_url }}?tag={{ tag | url_encode }}">{{ tag | escape }}</a>{% endfor %}</div>
+  {% endif %}
+  {% if page.stack %}
+    <div class="tags">{% for tech in page.stack %}<span>{{ tech }}</span>{% endfor %}</div>
+  {% endif %}
+  <nav class="toc" aria-label="本文目錄" hidden><p class="label">本文目錄 / Contents</p><ol></ol></nav>
+  <div class="prose">{{ content }}</div>
+  {% if page.repository_link %}<a class="button secondary" href="{{ page.repository_link }}">查看 GitHub 原始碼</a>{% endif %}
+</article>
