@@ -4,7 +4,7 @@ A Traditional Chinese field journal at <https://vkcharon.github.io/>. Read the [
 
 ## Repository analysis
 
-Before the migration, the only tracked file was `README.md`. Pages was already enabled for `main` at `/` without a custom domain. There was no article database, asset library, application, or set of article URLs to migrate. The public homepage keeps its address.
+The starting checkout contained only `README.md`. Pages was already enabled for `main` at `/` without a custom domain. No article database or article URLs needed migration. `main` received unrelated changes during implementation, so the clean `journal` branch is the site's source of truth. This preserves the public address without merging, overwriting, or publishing the later contents of `main`.
 
 ## Recommended architecture
 
@@ -33,11 +33,11 @@ Gemfile, Gemfile.lock Local preview dependencies
 
 ## Implementation steps
 
-1. Retain the existing publishing branch and domain; introduce an explicit homepage in place of the README fallback.
+1. Retain the domain and native publishing method; introduce an explicit homepage in place of the README fallback.
 2. Render the shell, typography, two themes, geometric artwork and reading layout using site-specific CSS. Only public, newly implemented site assets belong in Git.
 3. Generate indexes and discovery metadata from articles and case studies. Article dates, labels and descriptions have a single source of truth.
 4. Enhance the static archive with URL-addressable search and filters. Check keyboard interactions, mobile reflow, restored filters, the no-JavaScript reading path, feeds and canonical links.
-5. Push to `main`. Check the **Pages build and deployment** result before treating the work as published.
+5. Push to `journal`. Check the **Pages build and deployment** result before treating the work as published.
 
 ## Files created and modified
 
@@ -53,7 +53,7 @@ git archive --format=zip --output=../chr-site-source.zip HEAD
 
 ## Deployment guide
 
-Leave **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)`** unchanged. Every accepted push to `main` triggers the managed build. Check the `github-pages` deployment in Actions. Do not upload `_site/`, the local dependency directory or design reference archives. If moving to a project-site URL later, update `url` and `baseurl` in `_config.yml` first.
+Use **Settings → Pages → Build and deployment → Deploy from a branch → `journal` / `(root)`**. Edit on `journal` (`git switch journal` after cloning). Every accepted push to this branch triggers the managed build. Check the `github-pages` deployment in Actions. Do not upload `_site/`, the local dependency directory or design reference archives. If moving to a project-site URL later, update `url` and `baseurl` in `_config.yml` first.
 
 **Local preview** (Ruby 3.3, Bundler, compiler for native gems):
 
@@ -65,7 +65,7 @@ python3 scripts/check.py
 bundle exec jekyll serve --host 127.0.0.1
 ```
 
-Open `http://127.0.0.1:4000/`. On a launch regression, revert the launch commit with `git revert <launch-sha>` and push the revert; do not rewrite history. The previous README and Pages source settings can serve the original root again.
+Open `http://127.0.0.1:4000/`. For a regression, revert the affected site change on `journal` and push the revert; do not rewrite history. Do not switch publication back to another branch without reviewing everything it would publish.
 
 ### Publish an article
 

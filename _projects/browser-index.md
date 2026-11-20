@@ -4,7 +4,7 @@ description: 用原生表單篩選已經下載的文章卡片，保留可分享�
 date: 2026-11-20
 serial: "02"
 stack: [JavaScript, HTML, URLSearchParams]
-repository_link: https://github.com/vkCharon/vkCharon.github.io/blob/main/assets/site.js
+repository_link: https://github.com/vkCharon/vkCharon.github.io/blob/journal/assets/site.js
 ---
 ## 使用情境
 

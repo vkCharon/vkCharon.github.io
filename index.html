@@ -32,6 +32,6 @@ description: ChR 的個人刊物。從平面構成到前端實作，在這裡讀
     <p class="data">最近建置 · {{ site.time | date: '%Y.%m.%d %H:%M UTC' }}</p>
     {% if site.github.build_revision %}<p class="data">出版版本 · <a href="{{ site.repo_url }}/commit/{{ site.github.build_revision }}">{{ site.github.build_revision | slice: 0, 7 }}</a></p>{% endif %}
     <p>這份刊物由版本庫直接出版。各次更新與檔案變動可在活動紀錄查閱。</p>
-    <a href="{{ site.repo_url }}/activity">查看版本庫活動</a> · <a href="{{ site.profile_url }}">作者主頁</a>
+    <a href="{{ site.repo_url }}/activity?ref=journal">查看出版分支活動</a> · <a href="{{ site.profile_url }}">作者主頁</a>
   </section>
 </div>
